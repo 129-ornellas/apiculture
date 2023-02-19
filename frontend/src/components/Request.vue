@@ -18,15 +18,13 @@
         />
       </v-col>
       <v-col cols="12" md="3">
-        <v-btn @click="sendRequest" height="55" color="green">Send Request</v-btn>
+        <v-btn @click="sendRequestParams" height="55" color="green">Send Request</v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { api } from '~api'
-
 export default {
   data() {
     return {
@@ -36,8 +34,12 @@ export default {
     };
   },
   methods: {
-    async sendRequest() {
-      const response = await api.sendRequest(this.url, this.selectedMethod)
+    async sendRequestParams() {
+      const requestParams = {
+        url: this.url,
+        method: this.selectedMethod
+      }
+      this.$emit("requestParams", requestParams)
     },
   },
 };
