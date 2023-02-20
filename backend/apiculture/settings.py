@@ -1,13 +1,14 @@
 from pathlib import Path
-from decouple import config, Csv
+from decouple import config
+from corsheaders.defaults import default_headers, default_methods
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-n73nltbe+0zufsy4yzjeu-&aisql5)3j7m)v5lfr@)@u8^bbc-"
+SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
 
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -22,9 +23,13 @@ LOCAL_APPS = [
     "backend.core"
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+THIRD_PARTY_APPS = [
+    "corsheaders"
+]
 
-MIDDLEWARE = [
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+DJANGO_MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -32,7 +37,22 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware"
 ]
+
+THIRD_PARTY_MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware"
+]
+
+MIDDLEWARE = DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE
+
+CORS_ALLOW_HEADERS = list(default_headers)
+
+CORS_ALLOW_METHODS = list(default_methods)
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
 ROOT_URLCONF = "backend.apiculture.urls"
 

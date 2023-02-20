@@ -10,9 +10,9 @@
     <v-main>
       <Navbar/>
       <Bees/>
-      <Request @requestParams="handleRequestParams"/>
-      <v-container v-if="requestParams">
-        <Response :requestParams="requestParams"/>
+      <Request @params="handleParams"/>
+      <v-container v-if="params">
+        <Response :params="params"/>
       </v-container>
     </v-main>
   </v-app>
@@ -22,12 +22,12 @@
 export default {
   data() {
     return {
-      requestParams: null
+      params: null
     }
   },
   methods: {
-    handleRequestParams(requestParams) {
-      this.requestParams = requestParams
+    handleParams(params) {
+      this.params = params
     }
   }
 }

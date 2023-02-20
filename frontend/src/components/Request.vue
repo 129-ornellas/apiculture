@@ -18,7 +18,7 @@
         />
       </v-col>
       <v-col cols="12" md="3">
-        <v-btn @click="sendRequestParams" height="55" color="green">Send Request</v-btn>
+        <v-btn @click="sendParams" height="55" color="green">Send Request</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -34,12 +34,12 @@ export default {
     };
   },
   methods: {
-    async sendRequestParams() {
-      const requestParams = {
+    async sendParams() {
+      const params = {
         url: this.url,
         method: this.selectedMethod
       }
-      this.$emit("requestParams", requestParams)
+      this.$emit("params", params)
     },
   },
 };

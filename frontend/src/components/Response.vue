@@ -1,10 +1,10 @@
 <template>
-  <v-card color="background" max-width="1500" v-if="responseData">
+  <v-card color="background" max-width="1500" v-if="data">
     <v-card-title class="green">Response</v-card-title>
     <v-card-text>
       <v-card>
         <v-card-text>
-          <pre><code class="language-json">{{ responseData }}</code></pre>
+          <pre><code>{{ data }}</code></pre>
         </v-card-text>
       </v-card>
     </v-card-text>
@@ -17,20 +17,26 @@ import { api } from '~api'
 export default {
   name: "Response",
   props: {
-    requestParams: {
+    params: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      responseData: null
+      data: null
     }
+  },
+  watch: {
+    params: {
+      handler: 'makeRequest',
+      deep: true,
+    },
   },
   methods: {
     async makeRequest() {
-      const response = await api.request(this.requestParams)
-      this.responseData = response
+      const response = await api.request(this.params)
+      this.data = JSON.parse(response)
     }
   },
   mounted() {

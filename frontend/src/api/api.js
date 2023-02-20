@@ -1,19 +1,8 @@
-const later = (response) => {
-    return new Promise(function(resolve) {
-      setTimeout(() => {
-        resolve(response)
-      }, 1000)
-    })
+import $axios from "./config.js"
+
+export const api = {
+  async request (params) {
+    const response = await $axios.get("/get", {params: params})
+    return response.data
   }
-  
-  export const api = {
-    async request (url, requestMethod) {
-      const response = {
-        "mock": false,
-        "id": 1,
-        "title": "mock",
-        "status": 200
-      }
-      return later(response)
-    }
-  }
+}
