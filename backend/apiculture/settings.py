@@ -19,7 +19,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    "core"
+    "backend.core"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
