@@ -12,7 +12,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./docker/postgres:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     restart:
       on-failure
 
@@ -67,3 +67,6 @@ services:
         condition: service_started
     restart:
       on-failure
+  
+volumes:
+  db_data:
