@@ -59,7 +59,7 @@ services:
     container_name: apiculture-nginx
     network_mode: host
     volumes:
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       backend:
         condition: service_started

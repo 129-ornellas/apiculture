@@ -19,4 +19,5 @@ COPY requirements.txt pyproject.toml /backend/
 RUN pip install -r requirements.txt
 
 COPY . /backend/
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "backend.apiculture.wsgi:application"]
+
+EXPOSE 8000
