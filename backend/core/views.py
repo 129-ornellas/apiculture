@@ -1,15 +1,25 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .forms import GetForm
+from http import HTTPStatus
 import requests
 import json
 
 @require_http_methods(["GET"])
 def get(request):
-    form = GetForm.parse_obj(request.GET.dict())
-    response = requests.get(form.url)
-    data = json.dumps(response.json())
-    return JsonResponse(data, status=response.status_code, safe=False)
+    try:
+        form = GetForm.parse_obj(request.GET.dict())
+    except ValueError as e:
+        error_msg = e.errors()[0]["msg"]
+        return JsonResponse({'error': str(error_msg)}, status=HTTPStatus.BAD_REQUEST)
+    
+    try:
+        response = requests.get(form.url)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+    
+    return JsonResponse(response.json(), status=HTTPStatus.OK)
 
 @require_http_methods(["POST"])
 def post(request):

@@ -35,8 +35,7 @@ export default {
   },
   methods: {
     async makeRequest() {
-      const response = await api.request(this.params)
-      this.data = JSON.parse(response)
+      this.data = await api.request(this.params)
     }
   },
   mounted() {
