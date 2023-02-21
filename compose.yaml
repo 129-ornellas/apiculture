@@ -20,6 +20,7 @@ services:
     image: apiculture-backend
     hostname: apiculture-backend
     container_name: apiculture-backend
+    network_mode: host
     build:
       context: .
       dockerfile: Dockerfile
@@ -40,6 +41,7 @@ services:
     image: apiculture-frontend
     hostname: apiculture-frontend
     container_name: apiculture-frontend
+    network_mode: host
     build:
       context: frontend/
       dockerfile: Dockerfile
