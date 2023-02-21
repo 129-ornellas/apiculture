@@ -150,6 +150,9 @@ cover/
 *.mo
 *.pot
 
+# Docker stuff
+docker/
+
 # Django stuff:
 *.log
 local_settings.py
