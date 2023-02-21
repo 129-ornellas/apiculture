@@ -12,7 +12,7 @@ RUN apt update && \
 
 COPY package.json package-lock.json /frontend/
 
-RUN npm ci && \
+RUN npm install && \
   npm cache clean --force && \
   npm cache verify
 
