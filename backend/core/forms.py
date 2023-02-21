@@ -1,5 +1,6 @@
 from pydantic import BaseModel, validator
 
+
 class GetForm(BaseModel):
     url: str
 
