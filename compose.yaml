@@ -1,5 +1,5 @@
 services:
-  db:
+  postgres:
     image: postgres:14.5-alpine
     container_name: apiculture-db
     ports:
@@ -12,7 +12,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     restart:
       on-failure
 
@@ -30,7 +30,7 @@ services:
     env_file:
       - .env
     depends_on:
-      db:
+      postgres:
         condition: service_healthy
     volumes:
       - .:/backend
@@ -71,4 +71,4 @@ services:
       on-failure
   
 volumes:
-  db_data:
+  postgres_data:
