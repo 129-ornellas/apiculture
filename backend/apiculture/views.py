@@ -21,8 +21,8 @@ def request_manager(request):
     bees = Bees(
         request_url=form.url,
         request_method=form.method,
-        request_body=form.body.decode("utf-8"),
-        request_headers=json.dumps(dict(form.headers))
+        request_body=form.body.decode("utf-8") if form.body else None,
+        request_headers=json.dumps(dict(form.headers)) if form.headers else None
     )
 
     try:
@@ -30,7 +30,7 @@ def request_manager(request):
             response = requests.request(
                 method=form.method,
                 url=form.url,
-                data=form.data,
+                data=form.body,
             )
             response.raise_for_status()
 

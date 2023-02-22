@@ -29,7 +29,7 @@ export default {
   },
   watch: {
     params: {
-      handler: 'makeRequest',
+      handler: "makeRequest",
       deep: true,
     },
   },

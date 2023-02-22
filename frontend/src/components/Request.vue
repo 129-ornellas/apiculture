@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="12" md="3">
         <v-select
+          disabled
           color="purple"
           v-model="selectedMethod"
           :items="methods"
