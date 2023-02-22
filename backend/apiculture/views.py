@@ -21,7 +21,7 @@ def get(request):
     except requests.exceptions.RequestException as e:
         return JsonResponse({'error': str(e)}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
     
-    return JsonResponse(response.json(), status=HTTPStatus.OK)
+    return JsonResponse(response.json(), status=HTTPStatus.OK, safe=False)
 
 @require_http_methods(["POST"])
 def post(request):

@@ -9,7 +9,7 @@ SECRET_KEY = config("SECRET_KEY", default="not-secret-key")
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["*"]
 
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -21,7 +21,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    "backend.core"
+    "backend.apiculture"
 ]
 
 THIRD_PARTY_APPS = [
@@ -53,7 +53,7 @@ CORS_ALLOW_METHODS = list(default_methods)
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost", "http://localhost:3000"]
 
 ROOT_URLCONF = "backend.core.urls"
 
