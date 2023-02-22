@@ -1,5 +1,5 @@
 services:
-  postgres:
+  db:
     image: postgres:14.5-alpine
     container_name: apiculture-db
     ports:
@@ -30,7 +30,7 @@ services:
     env_file:
       - .env
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
     volumes:
       - .:/backend
@@ -53,20 +53,6 @@ services:
         condition: service_started
     volumes:
       - ./frontend:/frontend
-    restart:
-      on-failure
-
-  mock:
-    image: apiculture-mock
-    hostname: apiculture-mock
-    container_name: apiculture-mock
-    network_mode: host
-    build:
-      context: frontend/
-      dockerfile: Dockerfile
-    command: npm run mock
-    ports:
-      - 3000:3000
     restart:
       on-failure
 
