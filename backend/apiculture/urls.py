@@ -1,11 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import request_manager
 
 urlpatterns = [
-    path("get", views.get),
-    path("post", views.post),
-    path("put", views.put),
-    path("patch", views.patch),
-    path("delete", views.delete),
+    path("request_manager", request_manager),
 ]

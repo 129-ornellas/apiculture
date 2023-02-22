@@ -1,14 +1,16 @@
-from pydantic import BaseModel, validator
+from enum import Enum
+
+from pydantic import BaseModel, HttpUrl
 
 
-class GetForm(BaseModel):
-    url: str
+class RequestMethod(str, Enum):
+    GET = "GET"
+    POST = "POST"
+    PUT = "PUT"
+    DELETE = "DELETE"
 
-    @validator("url")
-    def valid_url(cls, value):
-        if not value:
-            raise ValueError("URL is required")
-        cleaned_url = value.strip()
-        if not cleaned_url.startswith("http://") and not cleaned_url.startswith("https://"):
-            cleaned_url = f"http://{cleaned_url}"
-        return cleaned_url
+class RequestForm(BaseModel):
+    url: HttpUrl
+    method: RequestMethod
+    params: dict | None = None
+    headers: dict | None = None
