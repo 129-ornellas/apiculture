@@ -7,7 +7,7 @@ const later = (response) => {
 }
 
 export const api = {
-  async request (url, requestMethod) {
+  async request (params) {
     const response = {
       "mock": true,
       "id": 1,
