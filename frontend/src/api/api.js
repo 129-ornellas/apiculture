@@ -11,6 +11,6 @@ export const api = {
   },
   async getBees() {
     const response = await $axios.get("/bees_manager")
-    return response.data
+    return response.data.bees
   }
 }

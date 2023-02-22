@@ -13,4 +13,5 @@ class RequestMethod(str, Enum):
 class RequestForm(BaseModel):
     url: HttpUrl
     method: RequestMethod
-    data: dict | None = None
+    body: dict | None = None
+    headers: dict | None = None
