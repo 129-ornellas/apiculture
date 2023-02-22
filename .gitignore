@@ -233,10 +233,11 @@ venv.bak/
 # mkdocs documentation
 /site
 
-# mypy
+# Lint stuff
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.ruff_cache/
 
 # Pyre type checker
 .pyre/
