@@ -9,7 +9,7 @@
   <v-app>
     <v-main>
       <Navbar/>
-      <Bees :params="params"/>
+      <Bees/>
       <Request @params="handleParams"/>
       <v-container v-if="params">
         <Response :params="params"/>

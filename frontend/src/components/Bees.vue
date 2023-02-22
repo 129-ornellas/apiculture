@@ -11,27 +11,14 @@ import { api } from '@/api/api'
 
 export default {
   name: "Bees",
-  props: {
-    params: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
       bees: 0
     }
   },
-  watch: {
-    params: {
-      handler: "getBees",
-      deep: true,
-    }
-  },
   methods: {
     async getBees() {
       this.bees = await api.getBees()
-      this.$forceUpdate()
     }
   },
   mounted() {
