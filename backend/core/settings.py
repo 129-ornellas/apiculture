@@ -55,7 +55,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
-ROOT_URLCONF = "backend.apiculture.urls"
+ROOT_URLCONF = "backend.core.urls"
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "backend.apiculture.wsgi.application"
+WSGI_APPLICATION = "backend.core.wsgi.application"
 
 DATABASES = {
     "default": {

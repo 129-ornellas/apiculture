@@ -1,0 +1,18 @@
+services:
+  mock:
+    image: apiculture-mock
+    hostname: apiculture-mock
+    container_name: apiculture-mock
+    network_mode: host
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    command: npm run mock
+    environment:
+      API_MOCK: "1"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+    restart:
+      on-failure

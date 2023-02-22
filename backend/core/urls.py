@@ -1,11 +1,7 @@
-from django.urls import path
-
-from . import views
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
-    path("get", views.get),
-    path("post", views.post),
-    path("put", views.put),
-    path("patch", views.patch),
-    path("delete", views.delete),
+    path("admin/", admin.site.urls),
+    path("api/", include("backend.apiculture.urls"))
 ]
