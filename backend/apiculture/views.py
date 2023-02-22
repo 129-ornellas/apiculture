@@ -19,7 +19,7 @@ def request_manager(request):
         response = requests.request(
             method=form.method,
             url=form.url,
-            params=form.params,
+            data=form.data,
             headers=form.headers,
         )
         response.raise_for_status()
