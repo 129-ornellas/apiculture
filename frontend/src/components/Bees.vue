@@ -7,22 +7,14 @@
 </template>
 
 <script>
-import { api } from '@/api/api'
 
 export default {
   name: "Bees",
-  data() {
-    return {
-      bees: 0
+  props: {
+    bees: {
+      type: Number,
+      required: true
     }
-  },
-  methods: {
-    async getBees() {
-      this.bees = await api.getBees()
-    }
-  },
-  mounted() {
-    this.getBees()
   }
 }
 </script>

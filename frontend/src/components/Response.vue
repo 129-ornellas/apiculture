@@ -26,7 +26,8 @@ export default {
   },
   data() {
     return {
-      data: null
+      data: null,
+      bees: 0
     }
   },
   watch: {
@@ -38,6 +39,8 @@ export default {
   methods: {
     async makeRequest() {
       this.data = await api.request(this.params)
+      this.bees = await api.getBees()
+      this.$emit("bees", bees)
     }
   },
   mounted() {
