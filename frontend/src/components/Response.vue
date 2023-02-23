@@ -1,14 +1,20 @@
 <template>
-  <v-card color="background" max-width="1500" v-if="data">
-    <v-card-title class="green">Response</v-card-title>
-    <v-card-text>
-      <v-card>
-        <v-card-text>
-          <pre><code>{{ data }}</code></pre>
-        </v-card-text>
-      </v-card>
-    </v-card-text>
-  </v-card>
+  <v-container>
+    <v-row>
+      <v-col cols=12 md=11>
+        <v-card color="background" v-if="data">
+          <v-card-title class="green">Response</v-card-title>
+          <v-card-text>
+            <v-card>
+              <v-card-text>
+                <pre><code>{{ data }}</code></pre>
+              </v-card-text>
+            </v-card>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
