@@ -43,8 +43,7 @@ export default {
   methods: {
     async makeRequest() {
       this.data = await api.request(this.params)
-      const updatedBees = await api.getBees()
-      this.$emit("updatedBees", updatedBees)
+      this.$emit("beesCounter")
     }
   },
   mounted() {

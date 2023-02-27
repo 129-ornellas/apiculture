@@ -17,6 +17,7 @@ export const api = {
     return later(response)
   },
   async getBees() {
-    return later(10)
+    const bees = 10
+    return bees
   }
 }

@@ -9,10 +9,10 @@
   <v-app>
     <v-main>
       <Navbar/>
-      <Bees @bees="updatedBees"/>
+      <Bees :beesCounter="beesCounter"/>
       <Request @params="handleParams"/>
       <v-container v-if="params">
-        <Response @bees="handleBees" :params="params"/>
+        <Response @beesCounter="handleBees" :params="params"/>
       </v-container>
     </v-main>
   </v-app>
@@ -23,15 +23,15 @@ export default {
   data() {
     return {
       params: null,
-      updatedBees: 0
+      beesCounter: 0
     }
   },
   methods: {
     handleParams(params) {
       this.params = params
     },
-    handleBees(updatedBees) {
-      this.updatedBees = updatedBees
+    handleBees() {
+      this.beesCounter++
     }
   }
 }

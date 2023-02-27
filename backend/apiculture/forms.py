@@ -14,4 +14,3 @@ class RequestForm(BaseModel):
     url: HttpUrl
     method: RequestMethod
     body: dict | None = None
-    headers: dict | None = None

@@ -22,7 +22,7 @@ def request_manager(request):
         request_url=form.url,
         request_method=form.method,
         request_body=form.body.decode("utf-8") if form.body else None,
-        request_headers=json.dumps(dict(form.headers)) if form.headers else None
+        request_headers=dict(request.headers)
     )
 
     try:
@@ -38,18 +38,14 @@ def request_manager(request):
             bees.response_content = response.content.decode('utf-8')
             bees.response_elapsed = response.elapsed.total_seconds()
             bees.save()
-    except requests.exceptions.HTTPError as e:
+    except requests.exceptions.RequestException as e:
         bees.response_code = e.response.status_code
         bees.response_content = e.response.content.decode('utf-8')
         bees.response_elapsed = e.response.elapsed.total_seconds()
         bees.save()
 
         return JsonResponse({'error': str(e)}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
-    except requests.exceptions.RequestException as e:
-        bees.save()
 
-        return JsonResponse({'error': str(e)}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
-    
     return JsonResponse(response.json(), status=HTTPStatus.OK, safe=False)
 
 
