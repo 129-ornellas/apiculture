@@ -10,10 +10,20 @@ Web API Client
 docker compose up
 ```
 
+###  Access  
+```
+http://localhost
+```
+
 ### Mock API
 
 ```
 docker compose -f mock.yaml up
+```
+
+### Access
+``` 
+http://localhost:3000
 ```
 
 ## Stack
