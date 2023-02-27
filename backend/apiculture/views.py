@@ -1,4 +1,3 @@
-import json
 from http import HTTPStatus
 
 import requests
