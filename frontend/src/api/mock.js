@@ -15,5 +15,8 @@ export const api = {
       "status": 200
     }
     return later(response)
+  },
+  async getBees() {
+    return later(10)
   }
 }

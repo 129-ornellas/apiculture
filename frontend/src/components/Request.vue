@@ -29,9 +29,9 @@
 export default {
   data() {
     return {
-      selectedMethod: 'GET',
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-      url: '',
+      selectedMethod: "GET",
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+      url: "",
     };
   },
   methods: {

@@ -5,7 +5,7 @@
       <v-card-text>
         <v-card>
           <v-card-text>
-            <pre><code>{{ data }}</code></pre>
+            <vue-json-pretty :data="data"/>
           </v-card-text>
         </v-card>
       </v-card-text>
@@ -14,10 +14,15 @@
 </template>
 
 <script>
-import { api } from '~api'
+import { api } from "~api"
+import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 
 export default {
   name: "Response",
+  components: {
+    VueJsonPretty
+  },
   props: {
     params: {
       type: Object,
@@ -27,7 +32,6 @@ export default {
   data() {
     return {
       data: null,
-      bees: 0
     }
   },
   watch: {
@@ -39,8 +43,8 @@ export default {
   methods: {
     async makeRequest() {
       this.data = await api.request(this.params)
-      this.bees = await api.getBees()
-      this.$emit("bees", bees)
+      const updatedBees = await api.getBees()
+      this.$emit("updatedBees", updatedBees)
     }
   },
   mounted() {
