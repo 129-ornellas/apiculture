@@ -3,56 +3,62 @@ name: ci
 on:
   push:
     branches:
-     - dev
+      - dev
   pull_request:
     branches:
-     - dev
+      - dev
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     services:
-      db:
-        image: postgres:14.5
+      postgres:
+        image: postgres:14.5-alpine
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
         ports:
-          - 5444:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
 
-    - name: Build & Run Docker Images
-      run: docker compose up --build
+      - name: Run migrations
+        run: ./manage.py migrate --noinput
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
 
-    - name: Run ruff
-      run: |
-        ruff .
+      - name: Run pytest
+        run: pytest --cache-clear
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
 
-    - name: Run isort
-      run: isort --check-only --diff .
+      - name: Run ruff
+        run: ruff .
 
-    - name: Run pytest
-      run: pytest
-
-    - name: Stop Docker containers
-      run: docker-compose down
+      - name: Run isort
+        run: isort --check-only --diff .
