@@ -7,7 +7,6 @@ ENV SHELL=/bin/sh LANG=en_US.UTF-8
 RUN apt update && \
   apt install -y \
   curl \
-  net-tools \
   build-essential
 
 COPY package.json package-lock.json /frontend/
