@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-card max-width="90%" color="background" v-if="data">
+  <v-container class="ma-0">
+    <v-card max-width="86%" color="background" v-if="data">
       <v-card-title class="green">Response</v-card-title>
       <v-card-text>
         <v-card>
