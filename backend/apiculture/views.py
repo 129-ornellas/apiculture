@@ -1,5 +1,5 @@
 from http import HTTPStatus
-
+import json
 import requests
 from django.db import transaction
 from django.http import JsonResponse
@@ -12,7 +12,9 @@ from .models import Bees
 @require_GET
 def request_manager(request):
     try:
-        form = RequestForm.parse_obj(request.GET.dict())
+        params = request.GET.dict()
+        params["body"] = json.loads(params["body"])
+        form = RequestForm.parse_obj(params)
     except ValueError as e:
         error_msg = e.errors()[0]["msg"]
         return JsonResponse({'error': str(error_msg)}, status=HTTPStatus.BAD_REQUEST)
@@ -20,7 +22,7 @@ def request_manager(request):
     bees = Bees(
         request_url=form.url,
         request_method=form.method,
-        request_body=form.body.decode("utf-8") if form.body else None,
+        request_body=form.body,
         request_headers=dict(request.headers)
     )
 
