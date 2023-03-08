@@ -1,0 +1,17 @@
+frontend/
+nginx/
+.git/
+.idea/
+.vscode/
+.venv/
+venv/
+.pytest_cache/
+__pycache__/
+**/__pycache__/
+**/tests/
+.gitignore
+.dockerignore
+Dockerfile
+compose.yaml
+pytest.ini
+README.md

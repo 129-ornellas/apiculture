@@ -14,7 +14,7 @@ from .models import Bees
 def request_manager(request):
     try:
         params = request.GET.dict()
-        params["body"] = json.loads(params["body"])
+        params["body"] = json.loads(params["body"]) if params["body"] else None
         form = RequestForm.parse_obj(params)
     except ValueError as e:
         error_msg = e.errors()[0]["msg"]

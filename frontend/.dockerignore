@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+node_modules/
+Dockerfile
+.gitignore
+.eslintrc.cjs
+.editorconfig
+.browserslistrc
+jsconfig.json
+vitest.config.js
