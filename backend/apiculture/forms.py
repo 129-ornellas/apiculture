@@ -14,3 +14,4 @@ class RequestForm(BaseModel):
     url: HttpUrl
     method: RequestMethod
     body: dict | None = None
+    accept: str

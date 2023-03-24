@@ -9,6 +9,14 @@
           label="Request Method"
         />
       </v-col>
+      <v-col cols="12" md="3">
+        <v-select
+          color="purple"
+          v-model="selectedAccept"
+          :items="['text/html', 'application/json']"
+          label="Accept"
+        />
+      </v-col>
       <v-col cols="12" md="6">
         <v-text-field
           v-model="url"
@@ -40,6 +48,7 @@ export default {
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
       url: "",
       requestBody: "",
+      selectedAccept: 'text/html'
     };
   },
   computed: {
@@ -53,6 +62,7 @@ export default {
         url: this.url,
         method: this.selectedMethod,
         body: this.requestBody,
+        accept: this.selectedAccept,
       }
       this.$emit("params", params)
     },

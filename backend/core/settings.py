@@ -54,7 +54,7 @@ CORS_ALLOW_METHODS = list(default_methods)
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = ["http://localhost", "http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost", "http://localhost:3001"]
 
 ROOT_URLCONF = "backend.core.urls"
 
